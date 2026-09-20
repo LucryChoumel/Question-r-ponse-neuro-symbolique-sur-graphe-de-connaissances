@@ -1,1 +1,1 @@
-# Question-r-ponse-neuro-symbolique-sur-graphe-de-connaissances
+# Question-réponse-neuro-symbolique-sur-graphe-de-connaissances
