@@ -1,4 +1,4 @@
-# NSQA — Question-réponse sur graphe de connaissances (neuro-symbolique)
+# NSQA — Question-réponse sur graphe de connaissances (neuro-symbolisme)
 
 Un **LLM** lit le texte et comprend les questions ; un **graphe de connaissances** garantit les faits ; des **règles
 logiques** raisonnent et **prouvent**. Le LLM ne répond jamais lui-même : il traduit, et c'est le graphe qui répond.
