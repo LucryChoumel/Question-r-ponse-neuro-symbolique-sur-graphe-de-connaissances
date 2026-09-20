@@ -1,0 +1,48 @@
+@prefix nsqa: <http://example.org/nsqa#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+
+# Contraintes de validation appliquées aux triplets extraits (couche neuronale)
+# avant qu'ils n'entrent dans la base de raisonnement (couche symbolique).
+
+nsqa:PrendShape a sh:NodeShape ;
+    sh:targetSubjectsOf nsqa:prend ;
+    sh:class nsqa:Patient ;
+    sh:message "Le sujet de 'prend' doit être un patient." .
+nsqa:PrendObjetShape a sh:NodeShape ;
+    sh:targetObjectsOf nsqa:prend ;
+    sh:class nsqa:Medicament ;
+    sh:message "L'objet de 'prend' doit être un médicament." .
+
+nsqa:SouffreDeShape a sh:NodeShape ;
+    sh:targetSubjectsOf nsqa:souffreDe ;
+    sh:class nsqa:Patient ;
+    sh:message "Le sujet de 'souffreDe' doit être un patient." .
+nsqa:SouffreDeObjetShape a sh:NodeShape ;
+    sh:targetObjectsOf nsqa:souffreDe ;
+    sh:class nsqa:Pathologie ;
+    sh:message "L'objet de 'souffreDe' doit être une pathologie." .
+
+nsqa:TraiteShape a sh:NodeShape ;
+    sh:targetSubjectsOf nsqa:traite ;
+    sh:class nsqa:Medicament ;
+    sh:message "Le sujet de 'traite' doit être un médicament." .
+nsqa:TraiteObjetShape a sh:NodeShape ;
+    sh:targetObjectsOf nsqa:traite ;
+    sh:class nsqa:Pathologie ;
+    sh:message "L'objet de 'traite' doit être une pathologie." .
+
+nsqa:InteractionShape a sh:NodeShape ;
+    sh:targetSubjectsOf nsqa:interagitAvec ;
+    sh:targetObjectsOf nsqa:interagitAvec ;
+    sh:class nsqa:Medicament ;
+    sh:message "'interagitAvec' relie uniquement des médicaments." .
+
+nsqa:ContreIndicationObjetShape a sh:NodeShape ;
+    sh:targetObjectsOf nsqa:contreIndiquePour ;
+    sh:class nsqa:Pathologie ;
+    sh:message "'contreIndiquePour' doit pointer vers une pathologie." .
+
+nsqa:RisqueObjetShape a sh:NodeShape ;
+    sh:targetObjectsOf nsqa:augmenteLeRisqueDe ;
+    sh:class nsqa:Pathologie ;
+    sh:message "'augmenteLeRisqueDe' doit pointer vers une pathologie." .

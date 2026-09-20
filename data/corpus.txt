@@ -1,0 +1,33 @@
+# Corpus médical fictif (démonstration). Une phrase par ligne.
+# Convention : "Un/Une/Les X ..." = classe ; "Le/La/L' X ..." ou nom propre = instance.
+
+# --- Taxonomie ---
+Un AINS est un médicament.
+Un anticoagulant est un médicament.
+L'aspirine est un AINS.
+L'ibuprofène est un AINS.
+Le warfarin est un anticoagulant.
+Le paracétamol est un médicament.
+L'oméprazole est un médicament.
+L'ulcère gastrique est une pathologie.
+Le saignement est une pathologie.
+La douleur est une pathologie.
+
+# --- Connaissances pharmacologiques ---
+Un AINS augmente le risque de saignement.
+Les AINS sont contre-indiqués en cas d'ulcère gastrique.
+L'aspirine interagit avec le warfarin.
+Le paracétamol traite la douleur.
+L'ibuprofène traite la douleur.
+L'oméprazole traite l'ulcère gastrique.
+
+# --- Patients ---
+Marie est un patient.
+Paul est un patient.
+Sophie est une patiente.
+Marie souffre d'ulcère gastrique.
+Marie prend de l'ibuprofène.
+Paul prend de l'aspirine.
+Paul prend du warfarin.
+Sophie souffre de douleur.
+Sophie prend du paracétamol.

@@ -1,0 +1,15 @@
+[
+  {"question": "Avec quoi l'aspirine interagit-elle ?", "expected": ["warfarin"], "needs_reasoning": false},
+  {"question": "Avec quoi le warfarin interagit-il ?", "expected": ["aspirine"], "needs_reasoning": true},
+  {"question": "Quelle est la classe de l'ibuprofène ?", "expected": ["AINS", "médicament"], "needs_reasoning": true},
+  {"question": "Que traite l'oméprazole ?", "expected": ["ulcère gastrique"], "needs_reasoning": false},
+  {"question": "Quels médicaments traitent la douleur ?", "expected": ["paracétamol", "ibuprofène"], "needs_reasoning": false},
+  {"question": "Qui prend de l'aspirine ?", "expected": ["Paul"], "needs_reasoning": false},
+  {"question": "Quels médicaments sont contre-indiqués en cas d'ulcère gastrique ?", "expected": ["aspirine", "ibuprofène"], "needs_reasoning": true},
+  {"question": "Quels médicaments augmentent le risque de saignement ?", "expected": ["aspirine", "ibuprofène"], "needs_reasoning": true},
+  {"question": "L'ibuprofène est-il contre-indiqué en cas d'ulcère gastrique ?", "expected": ["oui"], "needs_reasoning": true},
+  {"question": "Le paracétamol est-il contre-indiqué en cas d'ulcère gastrique ?", "expected": ["non"], "needs_reasoning": false},
+  {"question": "Quelles alertes pour Marie ?", "expected": ["ibuprofène"], "needs_reasoning": true},
+  {"question": "Quelles alertes pour Paul ?", "expected": ["aspirine", "warfarin"], "needs_reasoning": true},
+  {"question": "Quelles alertes pour Sophie ?", "expected": [], "needs_reasoning": false}
+]

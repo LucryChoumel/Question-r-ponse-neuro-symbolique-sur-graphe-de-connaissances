@@ -1,0 +1,6 @@
+rdflib>=7.0
+pyshacl>=0.26
+numpy>=1.26
+pytest>=8
+# Optionnel (mode LLM réel) :
+# anthropic>=0.40

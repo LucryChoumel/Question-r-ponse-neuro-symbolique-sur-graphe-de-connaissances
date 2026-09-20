@@ -1,0 +1,29 @@
+@prefix nsqa: <http://example.org/nsqa#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# --- Classes ---
+nsqa:Medicament a owl:Class ; rdfs:label "médicament"@fr .
+nsqa:Patient    a owl:Class ; rdfs:label "patient"@fr ; skos:altLabel "patiente"@fr .
+nsqa:Pathologie a owl:Class ; rdfs:label "pathologie"@fr .
+
+# --- Relations (domaine / portée) ---
+nsqa:interagitAvec a owl:ObjectProperty, owl:SymmetricProperty ;
+    rdfs:domain nsqa:Medicament ; rdfs:range nsqa:Medicament .
+nsqa:prend a owl:ObjectProperty ;
+    rdfs:domain nsqa:Patient ; rdfs:range nsqa:Medicament .
+nsqa:souffreDe a owl:ObjectProperty ;
+    rdfs:domain nsqa:Patient ; rdfs:range nsqa:Pathologie .
+nsqa:traite a owl:ObjectProperty ;
+    rdfs:domain nsqa:Medicament ; rdfs:range nsqa:Pathologie .
+nsqa:contreIndiquePour a owl:ObjectProperty ;
+    rdfs:domain nsqa:Medicament ; rdfs:range nsqa:Pathologie .
+nsqa:augmenteLeRisqueDe a owl:ObjectProperty ;
+    rdfs:domain nsqa:Medicament ; rdfs:range nsqa:Pathologie .
+
+# --- Relations inférées (produites par les règles, jamais extraites) ---
+nsqa:alerteContreIndication a owl:ObjectProperty ;
+    rdfs:domain nsqa:Patient ; rdfs:range nsqa:Medicament .
+nsqa:alerteInteraction a owl:ObjectProperty ;
+    rdfs:domain nsqa:Patient ; rdfs:range nsqa:Medicament .
