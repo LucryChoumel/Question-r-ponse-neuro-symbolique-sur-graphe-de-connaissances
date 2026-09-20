@@ -1,4 +1,4 @@
-# NSQA — Question-réponse explicable sur graphe de connaissances (neuro-symbolique)
+# NSQA — Question-réponse sur graphe de connaissances (neuro-symbolique)
 
 Un **LLM** lit le texte et comprend les questions ; un **graphe de connaissances** garantit les faits ; des **règles
 logiques** raisonnent et **prouvent**. Le LLM ne répond jamais lui-même : il traduit, et c'est le graphe qui répond.
@@ -97,7 +97,7 @@ Le corpus ne dit jamais que l'aspirine est contre-indiquée : la réponse est d�
 ```text
 Système                      Précision     Rappel         F1      Exact
 KG sans raisonnement              0.54       0.46       0.49       0.38
-KG + raisonnement (hybride)       1.00       1.00       1.00       1.00
+KG + raisonnement (hybride)       0.90       0.90       0.90       0.90
 ```
 
 Ce jeu a été écrit avec le corpus et les règles : le 1.00 montre que la chaîne fonctionne, pas qu'elle généralise.
@@ -111,12 +111,3 @@ Pour la complétion de liens sur données standards : `python scripts/eval_link_
 - TransE sur 36 faits ne produit que des hypothèses (parfois fausses) : à valider par un humain.
 - Monde fermé : ce qui n'est pas dans le graphe est traité comme faux.
 
-## 7. Structure
-
-```
-data/       corpus.txt · ontology.ttl · shapes.ttl · questions.json
-src/nsqa/   extraction · kg · validation · reasoning · embeddings · qa · pipeline · evaluate · cli
-scripts/    eval_link_prediction.py
-tests/      25 tests pytest
-output/     exports Turtle et résultats
-```
