@@ -1,4 +1,4 @@
-# NSQA — Question-réponse sur graphe de connaissances (neuro-symbolisme)
+# NSQA — Question-réponse explicable sur graphe de connaissances (neuro-symbolisme)
 
 Un **LLM** lit le texte et comprend les questions ; un **graphe de connaissances** garantit les faits ; des **règles
 logiques** raisonnent et **prouvent**. Le LLM ne répond jamais lui-même : il traduit, et c'est le graphe qui répond.
@@ -42,8 +42,19 @@ SORTIES
 Neuronal : ①, ⑤, ⑥ (en mode `offline`, ① et ⑥ sont remplacées par des règles). Symbolique : ②, ③, ④, ⑦.
 Le raisonnement est fait par les règles maison, pas par un raisonneur OWL.
 
-**Règles :** symétrie d'`interagitAvec` · transitivité de `subClassOf` · héritage des types · héritage des
-contre-indications et des risques · alerte contre-indication · alerte interaction.
+### Règles d'inférence (étape ④, `src/nsqa/reasoning.py`)
+
+| Règle | Si… | Alors… | Exemple du corpus |
+|-------|-----|--------|-------------------|
+| **R1** Symétrie | A `interagitAvec` B | B `interagitAvec` A | aspirine ↔ warfarin |
+| **R2** Transitivité | A `subClassOf` B et B `subClassOf` C | A `subClassOf` C | non déclenchée (pas de chaîne de classes assez longue) |
+| **R3** Héritage de type | X est de type A et A `subClassOf` B | X est de type B | ibuprofène est un AINS ⇒ ibuprofène est un médicament |
+| **R4** Héritage des contre-indications | X est de type A et A `contreIndiquePour` C | X `contreIndiquePour` C | AINS contre-indiqués (ulcère) ⇒ aspirine contre-indiquée |
+| **R5** Héritage des risques | X est de type A et A `augmenteLeRisqueDe` C | X `augmenteLeRisqueDe` C | AINS ⇒ risque de saignement ⇒ ibuprofène idem |
+| **R6** Alerte contre-indication | P `prend` D, D `contreIndiquePour` C, P `souffreDe` C | P `alerteContreIndication` D | Marie (ulcère) prend de l'ibuprofène |
+| **R7** Alerte interaction | P `prend` D1 et D2, D1 `interagitAvec` D2 | P `alerteInteraction` D1 (et D2) | Paul prend aspirine + warfarin |
+
+Sur le corpus de démonstration, ces règles produisent 11 faits inférés, chacun avec sa trace de preuve.
 
 ## 3. Installation
 
@@ -100,14 +111,23 @@ KG sans raisonnement              0.54       0.46       0.49       0.38
 KG + raisonnement (hybride)       0.90       0.90       0.90       0.90
 ```
 
-Ce jeu a été écrit avec le corpus et les règles : le 1.00 montre que la chaîne fonctionne, pas qu'elle généralise.
-Le résultat utile est le gain dû aux règles (+0.51 de F1). En mode `anthropic`, une 3e ligne « LLM seul » est ajoutée.
+Ce jeu a été écrit avec le corpus et les règles : le 0.90 montre que la chaîne fonctionne, pas qu'elle généralise.
+Le résultat utile est le gain dû aux règles (+0.41 de F1). En mode `anthropic`, une 3e ligne « LLM seul » est ajoutée.
 Pour la complétion de liens sur données standards : `python scripts/eval_link_prediction.py --data <FB15k-237>`.
 
 ## 6. Limites
 
-- Le mode `anthropic` n'a pas été exécuté sur l'API réelle (pas de clé lors du développement) ; il est testé avec un faux client.
+- Le mode `anthropic` est testé avec un faux client ; il reste à valider sur l'API réelle (clé nécessaire) et les prompts peuvent demander des ajustements.
 - L'extracteur `offline` ne comprend que les phrases simples du corpus.
 - TransE sur 36 faits ne produit que des hypothèses (parfois fausses) : à valider par un humain.
 - Monde fermé : ce qui n'est pas dans le graphe est traité comme faux.
 
+## 7. Structure
+
+```
+data/       corpus.txt · ontology.ttl · shapes.ttl · questions.json
+src/nsqa/   extraction · kg · validation · reasoning · embeddings · qa · pipeline · evaluate · cli
+scripts/    eval_link_prediction.py
+tests/      25 tests pytest
+output/     exports Turtle et résultats
+```
