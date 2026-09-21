@@ -113,7 +113,7 @@ KG + raisonnement (hybride)       0.90       0.90       0.90       0.90
 
 Ce jeu a été écrit avec le corpus et les règles : le 0.90 montre que la chaîne fonctionne, pas qu'elle généralise.
 Le résultat utile est le gain dû aux règles (+0.41 de F1). En mode `anthropic`, une 3e ligne « LLM seul » est ajoutée.
-Pour la complétion de liens sur données standards : `python scripts/eval_link_prediction.py --data <FB15k-237>`.
+Pour la complétion de liens sur données standards.
 
 ## 6. Limites
 
