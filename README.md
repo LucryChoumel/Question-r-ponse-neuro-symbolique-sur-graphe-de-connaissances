@@ -30,12 +30,12 @@ SORTIES
 
 | # | Étape | Technologie / modèle | Module |
 |---|-------|----------------------|--------|
-| ① | Extraction | **Mode `offline`** : regex Python (`re`).<br>**Mode `anthropic`** : LLM **Claude** (`claude-sonnet-5` par défaut, réglable via `NSQA_MODEL`) avec sortie JSON stricte | `extraction.py`, `llm.py` |
+| ① | Extraction | **Mode `offline`** : regex Python (`re`).<br>**Mode `anthropic`** : LLM **Claude** (`claude-sonnet-5` par défaut, réglable via `NSQA_MODEL`) avec sortie JSON | `extraction.py`, `llm.py` |
 | ② | Construction | **RDFLib** (RDF, Turtle) ; ontologie en vocabulaire **RDFS/OWL** | `kg.py` |
 | ③ | Validation | **pySHACL** (contraintes **SHACL**) | `validation.py` |
 | ④ | Inférence | **Chaînage avant** écrit en Python sur RDFLib : 7 règles + provenance de chaque fait | `reasoning.py` |
 | ⑤ | Complétion | **TransE** implémenté en **NumPy** (distance L1, perte à marge), filtré par domaine/portée de l'ontologie | `embeddings.py` |
-| ⑥ | Traduction | **Mode `offline`** : gabarits regex.<br>**Mode `anthropic`** : **Claude** génère du SPARQL, refusé s'il n'est pas `SELECT`/`ASK` | `qa.py` |
+| ⑥ | Traduction | **Mode `offline`** : gabarits regex.<br>**Mode `anthropic`** : **Claude** génère du SPARQL| `qa.py` |
 | ⑦ | Exécution | Moteur **SPARQL de RDFLib** + explicateur d'arbre de preuve maison | `qa.py`, `reasoning.py` |
 | — | Évaluation / tests | Métriques (précision, rappel, F1) maison ; **pytest** (25 tests) | `evaluate.py`, `tests/` |
 
