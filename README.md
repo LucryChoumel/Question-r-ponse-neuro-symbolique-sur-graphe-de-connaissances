@@ -122,12 +122,3 @@ Pour la complétion de liens sur données standards : `python scripts/eval_link_
 - TransE sur 36 faits ne produit que des hypothèses (parfois fausses) : à valider par un humain.
 - Monde fermé : ce qui n'est pas dans le graphe est traité comme faux.
 
-## 7. Structure
-
-```
-data/       corpus.txt · ontology.ttl · shapes.ttl · questions.json
-src/nsqa/   extraction · kg · validation · reasoning · embeddings · qa · pipeline · evaluate · cli
-scripts/    eval_link_prediction.py
-tests/      25 tests pytest
-output/     exports Turtle et résultats
-```
